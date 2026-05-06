@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ZOMB</title>
   <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
     <div id="app-container">
@@ -59,6 +59,14 @@
                 <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('3')">3. (가방은 전투불가)</div>
                 <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('4')">4. 🏃‍♂️ 도망친다</div>
             </div>
+
+                      <div id="inventory-menu" style="display:none;">
+                <div class="command-link" onclick="window.TurnGame.getInstance().inventoryInput('1')">1. 🛠️ 제작하기</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().inventoryInput('2')">2. 🗑️ 버리기</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().inventoryInput('3')">3. 🔙 돌아가기</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().inventoryInput('9')">9. ✅ 실행 (제작/버리기)</div>
+            </div>
+
 
             <div id="base-menu" style="display:none;"></div>
             <div id="inventory-menu" style="display:none;"></div>
