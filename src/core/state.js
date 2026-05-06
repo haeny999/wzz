@@ -36,7 +36,7 @@ export async function loadAllData() {
         console.log("⏳ 데이터 로딩 시작...");
 
         // 몬스터 데이터 로드
-        const monsterRes = await fetch('data/enemies.json');
+        const monsterRes = await fetch('dataenemies.json');
         if (!monsterRes.ok) throw new Error("몬스터 파일을 찾을 수 없습니다.");
         const monsterData = await monsterRes.json();
         
