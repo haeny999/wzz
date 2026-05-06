@@ -1,0 +1,66 @@
+{
+  "wood": {
+    "idCode": 1001,
+    "id": "wood",
+    "name": "나무",
+    "icon": "🪵",
+    "type": "material",
+    "desc": "다양한 곳에 사용되는 목재."
+  },
+  "stone": {
+    "idCode": 1002,
+    "id": "stone",
+    "name": "돌",
+    "icon": "🪨",
+    "type": "material",
+    "desc": "다양한 곳에 사용되는 돌."
+  },
+  "core": {
+    "idCode": 1003,
+    "id": "core",
+    "name": "마물의 핵",
+    "icon": "💚",
+    "type": "material",
+    "desc": "마물을 처치하면 얻을 수 있는 핵. 기이하게도 아직 따뜻하며 꿈틀거린다."
+  },
+  "coreBig": {
+    "idCode": 1004,
+    "id": "coreBig",
+    "name": "거대한 핵",
+    "icon": "💜",
+    "type": "material",
+    "desc": "특별히 커다랗고 더 세차게 맥동하는 핵."
+  },
+  "bone": {
+    "idCode": 1005,
+    "id": "bone",
+    "name": "뼈",
+    "icon": "🦴",
+    "type": "material",
+    "desc": "쓸만해보이는 단단한 뼈. 무엇의 뼈인지는 중요하지 않다."
+  },
+  "damagedShoes": {
+    "idCode": 1006,
+    "id": "damagedShoes",
+    "name": "낡은 신발",
+    "icon": "👟",
+    "type": "material",
+    "desc": "누군가 신었던 신발. 신지 못할 정도로 망가져 있다."
+  },
+  "feather": {
+    "idCode": 1007,
+    "id": "feather",
+    "name": "깃털",
+    "icon": "🪶",
+    "type": "material",
+    "desc": "속도의 힘이 담긴 깃털."
+  },
+  "woodFence": {
+    "idCode": 1008,
+    "id": "woodFence",
+    "name": "나무 울타리",
+    "icon": "🪵🛖",
+    "type": "material",
+    "desc": "나무로 만든 울타리."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "woodSword": {
+    "id_code": 3001,
+    "id": "woodSword",
+    "name": "목검",
+    "icon": "🗡️",
+    "type": "equip",
+    "subType": "weapon",
+    "desc": "나무로 만든 검입니다. [L]공격력 +5[/L]",
+    "att": 5
+  },
+  "stoneAxe": {
+    "id_code": 3002,
+    "id": "stoneAxe",
+    "name": "돌도끼",
+    "icon": "🪓",
+    "type": "equip",
+    "subType": "weapon",
+    "desc": "돌로 만든 도끼입니다. [L]공격력 +10[/L]",
+    "att": 10
+  },
+  "lezendSword": {
+    "id_code": 3003,
+    "id": "lezendSword",
+    "name": "전설의 검",
+    "icon": "⚔️",
+    "type": "equip",
+    "subType": "weapon",
+    "desc": "전설의 검입니다. [L]공격력 +50[/L]",
+    "att": 50
+  },
+  "woodArmor": {
+    "id_code": 3004,
+    "id": "woodArmor",
+    "name": "나무 갑옷",
+    "icon": "🛡️",
+    "type": "equip",
+    "subType": "chest",
+    "desc": "기본적인 방어구입니다.",
+    "def": 5
+  }
+}

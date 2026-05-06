@@ -1,0 +1,14 @@
+{
+  "vitality": {
+    "idCode": 6001,
+    "name": "활력의 빛",
+    "effects": [
+      {
+        "target": "maxSp",
+        "type": "percent",
+        "value": 30
+      }
+    ],
+    "desc": "편안히 휴식했다. 최대 기력 +30%"
+  }
+}

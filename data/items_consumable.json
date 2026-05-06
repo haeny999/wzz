@@ -1,0 +1,32 @@
+{
+  "herb": {
+    "id_code": 2001,
+    "id": "herb",
+    "name": "약초",
+    "icon": "🌿",
+    "type": "consumable",
+    "desc": "치료약의 기본이 되는 풀.",
+    "effect": "heal",
+    "val": 10
+  },
+  "potion": {
+    "id_code": 2001,
+    "id": "potion",
+    "name": "회복약",
+    "icon": "🧪",
+    "type": "consumable",
+    "desc": "HP를 50 회복합니다.",
+    "effect": "heal",
+    "val": 50
+  },
+  "bomb": {
+    "id_code": 2001,
+    "id": "bomb",
+    "name": "폭탄",
+    "icon": "💣",
+    "type": "consumable",
+    "desc": "위험해 보입니다. [L]광범위 피해[/L]",
+    "effect": "damageAll",
+    "val": 10
+  }
+}

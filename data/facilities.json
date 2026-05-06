@@ -1,0 +1,24 @@
+{
+    "camp": {
+        "name": "캠프",
+        "icon": "⛺",
+        "time": 60,
+        "req": { "wood": 10 },
+        "useEffect": {
+            "costTime": 480,
+            "restoreHp": "max",
+            "restoreSp": "max",
+            "buffs": [
+                { "id": "vitality", "duration": 1080 }
+            ],
+            "desc": "8시간 휴식 후 18시간 동안 [활력] 버프 적용",
+            "useMsg": "캠프에서 휴식했다. 18시간의 [활력] 버프를 얻었다."
+        }
+    },
+    "workbench": {
+        "name": "작업대",
+        "icon": "🗜️",
+        "time": 120,
+        "req": { "wood": 5, "core": 1 }
+    }
+}

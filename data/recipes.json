@@ -1,0 +1,6 @@
+[
+  { "ingredients": ["wood", "wood", "wood"], "result": "woodSword" },
+  { "ingredients": ["stone", "wood"], "result": "stoneAxe" },
+  { "ingredients": ["wood", "stone"], "result": "woodFence" },
+  { "ingredients": ["herb", "herb", "herb"], "result": "potion" }
+]

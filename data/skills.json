@@ -1,0 +1,29 @@
+{
+  "skills": [
+    {
+      "id": "fireBall",
+      "name": "화염구",
+      "desc": "모든 적에게 화염구를 발사하여 폭발 데미지를 입힙니다.",
+      "type": "Active",
+      "attribute": "Fire",
+      "stats": {
+        "dmgAll": 0.4,
+        "cooldown": 5.0,
+        "manaCost": 20,
+        "range": 2
+      }
+    },
+    {
+      "id": "ironWill",
+      "name": "강철의 의지",
+      "desc": "방어력이 30% 상승합니다.",
+      "type": "Passive",
+      "attribute": "Neutral",
+      "stats": {
+        "defense_boost": 0.1,
+        "cooldown": 0,
+        "mana_cost": 0
+      }
+    }
+  ]
+}
