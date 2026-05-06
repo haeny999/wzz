@@ -80,6 +80,39 @@ export class InventoryManager {
             realIndex: index
         }));
 
+        if (!gameState.inventoryColumns) gameState.inventoryColumns = 4;
+        const cols = gameState.inventoryColumns;
+
+        // ✨ 2. 우측 상단에 '배열 변경 버튼' 만들기
+        const topBar = document.createElement('div');
+        topBar.style.cssText = "display: flex; justify-content: flex-end; padding: 5px 10px 0 0; width: 100%; box-sizing: border-box;";
+        
+        const toggleBtn = document.createElement('button');
+        toggleBtn.innerHTML = `🔲 ${cols}열 보기`;
+        // 모바일에서도 누르기 좋고 게임 톤에 맞는 디자인
+        toggleBtn.style.cssText = "background: #314735; border: 1px solid #4a705b; color: #eee; padding: 6px 12px; border-radius: 5px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.5);";
+        
+        // 버튼 클릭 시 열 개수를 2개씩 늘리고, 8이 넘으면 다시 4로 되돌린 뒤 새로고침
+        toggleBtn.onclick = () => {
+            gameState.inventoryColumns += 2;
+            if (gameState.inventoryColumns > 8) gameState.inventoryColumns = 4;
+            this.renderInventory(); // 화면 즉시 다시 그리기!
+        };
+        
+        topBar.appendChild(toggleBtn);
+        mapArea.appendChild(topBar); // 버튼을 먼저 화면에 붙임
+
+        // 3. 가방 그리드 생성
+        const grid = document.createElement('div');
+        grid.className = 'inventory-grid';
+        
+        // ✨ 4. 자바스크립트로 CSS의 열 개수(grid-template-columns)를 덮어쓰기!
+        grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+        // ✨ 5. 칸 수가 늘어나면 네모 칸이 작아지므로, 안의 폰트(아이콘, 숫자) 크기도 비례해서 줄여주기
+        const iconSize = cols === 4 ? '50px' : (cols === 6 ? '30px' : '22px');
+        const countSize = cols === 4 ? '20px' : (cols === 6 ? '14px' : '11px');
+
         // 전투 중에는 소모품만 보이기
         if (this.game.uiMode === 'BATTLE_ITEM' || this.game.uiMode === 'BATTLE_ITEM_CONFIRM') {
             displayItems = displayItems.filter(slot => ItemDB[slot.id] && ItemDB[slot.id].type === 'consumable');
