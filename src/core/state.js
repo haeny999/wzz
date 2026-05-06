@@ -36,7 +36,7 @@ export async function loadAllData() {
         console.log("⏳ 데이터 로딩 시작...");
 
         // 몬스터 데이터 로드
-        const monsterRes = await fetch('/data/enemies.json');
+        const monsterRes = await fetch('data/enemies.json');
         if (!monsterRes.ok) throw new Error("몬스터 파일을 찾을 수 없습니다.");
         const monsterData = await monsterRes.json();
         
@@ -44,7 +44,7 @@ export async function loadAllData() {
         gameState.monsters = monsterData;
 
         // 레시피 데이터 로드
-        const recipeRes = await fetch('/data/recipes.json');
+        const recipeRes = await fetch('data/recipes.json');
         const recipeData = await recipeRes.json();
         Recipes.length = 0; // 기존 배열 비우기
         // 레시피도 데이터 구조에 따라 유연하게 대응하도록 안전장치 보강
@@ -52,9 +52,9 @@ export async function loadAllData() {
 
         // 아이템 데이터 로드
         const [consumables, materials, equips] = await Promise.all([
-            fetch('/data/items_consumable.json').then(res => res.json()),
-            fetch('/data/items_material.json').then(res => res.json()),
-            fetch('/data/items_equip.json').then(res => res.json())
+            fetch('data/items_consumable.json').then(res => res.json()),
+            fetch('data/items_material.json').then(res => res.json()),
+            fetch('data/items_equip.json').then(res => res.json())
         ]);
 
         // ItemDB는 객체이므로 Object.assign 유지
@@ -66,7 +66,7 @@ export async function loadAllData() {
             itemCount: Object.keys(ItemDB).length 
         });
 
-        const locResponse = await fetch('/data/locations.json'); 
+        const locResponse = await fetch('data/locations.json'); 
         if (locResponse.ok) {
             const locData = await locResponse.json();
             Object.assign(LocationDB, locData); 
@@ -75,10 +75,10 @@ export async function loadAllData() {
         }
 
         // 경로의 일관성을 위해 앞에 '/'를 추가했습니다.
-        const buffResponse = await fetch('/data/buffs.json');
+        const buffResponse = await fetch('data/buffs.json');
         if (buffResponse.ok) Object.assign(BuffDB, await buffResponse.json());
 
-        const facResponse = await fetch('/data/facilities.json');
+        const facResponse = await fetch('data/facilities.json');
         if (facResponse.ok) Object.assign(FacilityDB, await facResponse.json());
 
     } catch (error) {
