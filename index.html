@@ -11,10 +11,9 @@
 <body>
     <div id="app-container">
         
-    <div class="stat-box">
-
-<img src="assets/hero.png" alt="내 캐릭터" class="hero-portrait">
-<div class="stat-text">
+        <div class="stat-box">
+            <img src="assets/hero.png" alt="내 캐릭터" class="hero-portrait">
+            <div class="stat-text">
                  <span class="highlight" id="hero-name">플레이어</span> 
                  (Lv.<span id="hero-level">1</span>) <br>
                  ❤️ HP: <span id="hero-hp">100/100</span> | 
@@ -27,8 +26,6 @@
             <span>🗺️ MAP AREA</span>
         </div>
 
-        
-        
         <div id="game-area">
             
             <hr style="border-color:#444; margin: 10px 0;">
@@ -50,33 +47,28 @@
             </form>
 
             <div id="game-menu" style="display:none;">
-                <div class="command-link" onclick="TurnGame.getInstance().menuInput('1')">1. ⚔️ 모험을 떠난다</div>
-                <div class="command-link" onclick="TurnGame.getInstance().menuInput('2')">2. 🛌 짧은 휴식</div>
-                <div class="command-link" onclick="TurnGame.getInstance().menuInput('3')">3. 🛌 긴 휴식 (하루 경과)</div>
-                <div class="command-link" onclick="TurnGame.getInstance().menuInput('4')">4. 🚫 종료</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().menuInput('1')">1. ⚔️ 모험을 떠난다</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().menuInput('2')">2. 🛌 짧은 휴식</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().menuInput('3')">3. 🛌 긴 휴식 (하루 경과)</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().menuInput('4')">4. 🚫 종료</div>
             </div>
 
             <div id="battle-menu" style="display:none;">
-                <div class="command-link" onclick="TurnGame.getInstance().battleInput('1')">1. ⚔️ 공격한다</div>
-                <div class="command-link" onclick="TurnGame.getInstance().battleInput('2')">2. 💊 아이템 사용</div>
-                <div class="command-link" onclick="TurnGame.getInstance().battleInput('3')">3. (가방은 전투불가)</div>
-                <div class="command-link" onclick="TurnGame.getInstance().battleInput('4')">4. 🏃‍♂️ 도망친다</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('1')">1. ⚔️ 공격한다</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('2')">2. 💊 아이템 사용</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('3')">3. (가방은 전투불가)</div>
+                <div class="command-link" onclick="window.TurnGame.getInstance().battleInput('4')">4. 🏃‍♂️ 도망친다</div>
             </div>
 
-            <div id="base-menu" style="display:none;">
-                <div class="command-link" onclick="TurnGame.getInstance().baseInput('1')">1. 🛌 긴 휴식 (하루 경과)</div>
-                <div class="command-link" onclick="TurnGame.getInstance().baseInput('2')">2. 🏪 거점 시설 이용</div>
-                <div class="command-link" onclick="TurnGame.getInstance().baseInput('3')">3. 🔨 거점 관리</div>
-                <div class="command-link" onclick="TurnGame.getInstance().baseInput('4')">4. 🚪 나가기 (모험으로)</div>
-            </div>
+            <div id="base-menu" style="display:none;"></div>
+            <div id="inventory-menu" style="display:none;"></div>
 
             <div id="save-modal" style="display:none;">
                 <div class="modal-header">
                     <h3 id="modal-title">게임 저장</h3>
                     <button class="close-btn" onclick="SaveSlotUI.close()">X</button>
                 </div>
-                <div id="slot-list-container">
-                    </div>
+                <div id="slot-list-container"></div>
             </div>
 
             <div id="log-modal" style="display:none;">
@@ -84,11 +76,12 @@
                     <h3 style="margin:0;">📜 모험 기록</h3>
                     <button class="close-btn" onclick="document.getElementById('log-modal').style.display='none'">X</button>
                 </div>
-                <div id="log-container">
-                    </div>
+                <div id="log-container"></div>
             </div>
 
-        </div> <div id="bottom-nav">
+        </div> 
+        
+        <div id="bottom-nav">
             <button class="nav-btn" id="btn-base">
                 <span class="nav-icon">🏠</span>
                 <span>거점</span>
@@ -112,6 +105,7 @@
         </div>
 
     </div> 
-    </div> </div> <script type="module" src="src/main.js"></script>
+    
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>
