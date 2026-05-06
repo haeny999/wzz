@@ -194,7 +194,8 @@ body, html {
     gap: 8px; 
     
     width: 100%; 
-    height: 100%; 
+    height: 100%;
+    max-height: 100%;
     align-content: start; /* 아이템이 무조건 맨 위에서부터 쌓임 */
     align-self: flex-start;
     overflow-y: auto;   /* 상하(세로) 스크롤은 켜기 */
