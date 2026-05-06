@@ -24,12 +24,16 @@ body, html {
 }
 
 /* --- [메인 레이아웃] --- */
+/* ✅ 이렇게 수정해 주세요! */
 #app-container {
+    position: absolute; /* 화면에 절대 좌표로 띄움 */
+    top: 0;             /* 천장에 딱 붙임 */
+    bottom: 0;          /* 바닥에 딱 붙임 (주소창 제외한 진짜 바닥) */
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
-    height: 100dvh; /* 화면 전체 높이 */
-    width: 100%;
-    position: relative;
+    /* height: 100dvh; <-- 이 줄은 아예 지워버리세요! */
 }
 
 /* 1. 지도 영역 */
