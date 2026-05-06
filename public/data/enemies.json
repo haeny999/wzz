@@ -1,0 +1,112 @@
+{
+  "madRat": {
+    "idCode": 9001,
+    "id": "madRat",
+    "name": "광폭한 쥐",
+    "type": "normal",
+    "hp": 25,
+    "att": 10,
+    "xp": 10,
+    "drops": [
+      {
+        "id": "stone",
+        "count": 2,
+        "rate": 100
+      },
+      {
+        "id": "damagedShoes",
+        "count": 1,
+        "rate": 5
+      }
+    ]
+  },
+  "livingBush": {
+    "idCode": 9002,
+    "id": "livingBush",
+    "name": "움직이는 덤불",
+    "type": "grass",
+    "hp": 50,
+    "att": 15,
+    "xp": 20,
+    "drops": [
+      {
+        "id": "herb",
+        "count": 1,
+        "rate": 100
+      },
+      {
+        "id": "stoneAxe",
+        "count": 1,
+        "rate": 50
+      }
+    ]
+  },
+  "boss": {
+    "idCode": 9003,
+    "id": "boss",
+    "name": "보스",
+    "type": "normal",
+    "hp": 100,
+    "att": 25,
+    "xp": 50,
+    "drops": [
+      {
+        "id": "coreBig",
+        "count": 1,
+        "rate": 100
+      },
+      {
+        "id": "bomb",
+        "count": 1,
+        "rate": 20
+      },
+      {
+        "id": "woodSword",
+        "count": 1,
+        "rate": 10
+      }
+    ]
+  },
+  "starvingDog": {
+    "idCode": 9004,
+    "id": "starvingDog",
+    "name": "굶주린 들개",
+    "type": "normal",
+    "hp": 15,
+    "att": 20,
+    "xp": 15,
+    "drops": [
+      {
+        "id": "wood",
+        "count": 2,
+        "rate": 100
+      },
+      {
+        "id": "bone",
+        "count": 1,
+        "rate": 50
+      }
+    ]
+  },
+  "angryBird": {
+    "idCode": 9005,
+    "id": "angryBird",
+    "name": "거대한 독수리",
+    "type": "flying",
+    "hp": 200,
+    "att": 40,
+    "xp": 100,
+    "drops": [
+      {
+        "id": "bone",
+        "count": 2,
+        "rate": 100
+      },
+      {
+        "id": "feather",
+        "count": 1,
+        "rate": 80
+      }
+    ]
+  }
+}

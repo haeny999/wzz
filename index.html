@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ZOMB</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+    <div class="stat-box">
+
+<img src="assets/hero.png" alt="내 캐릭터" class="hero-portrait">
+<div class="stat-text">
+                 <span class="highlight" id="hero-name">플레이어</span> 
+                 (Lv.<span id="hero-level">1</span>) <br>
+                 ❤️ HP: <span id="hero-hp">100/100</span> | 
+                 ✨ XP: <span id="hero-xp">0</span> | 
+                 📅 <span id="day">333년 1월 1일 12시 00분</span>
+             </div>
+        </div>
+        
+        <div id="map-area">
+            <span>🗺️ MAP AREA</span>
+        </div>
+
+        
+        
+        <div id="game-area">
+            
+            <hr style="border-color:#444; margin: 10px 0;">
+
+            <div class="message-box">
+                <div id="monster-stat" style="min-height: 20px;">
+                    <span id="monster-name" class="highlight"></span>
+                    <span id="monster-hp"></span>
+                    <span id="monster-att"></span>
+                </div>
+                <div id="message" style="color:#ddd; margin-top:5px;">
+                    모험을 시작할 준비가 되었습니다.
+                </div>
+            </div>
+
+            <form id="start-screen">
+                <input id="name-input" placeholder="영웅 이름을 입력하세요" style="padding:10px; width:65%;" required>
+                <button id="start-screen-btn" style="padding:10px; width:30%;">시작</button>
+            </form>
+
+            <div id="game-menu" style="display:none;">
+                <div class="command-link" onclick="TurnGame.getInstance().menuInput('1')">1. ⚔️ 모험을 떠난다</div>
+                <div class="command-link" onclick="TurnGame.getInstance().menuInput('2')">2. 🛌 짧은 휴식</div>
+                <div class="command-link" onclick="TurnGame.getInstance().menuInput('3')">3. 🛌 긴 휴식 (하루 경과)</div>
+                <div class="command-link" onclick="TurnGame.getInstance().menuInput('4')">4. 🚫 종료</div>
+            </div>
+
+            <div id="battle-menu" style="display:none;">
+                <div class="command-link" onclick="TurnGame.getInstance().battleInput('1')">1. ⚔️ 공격한다</div>
+                <div class="command-link" onclick="TurnGame.getInstance().battleInput('2')">2. 💊 아이템 사용</div>
+                <div class="command-link" onclick="TurnGame.getInstance().battleInput('3')">3. (가방은 전투불가)</div>
+                <div class="command-link" onclick="TurnGame.getInstance().battleInput('4')">4. 🏃‍♂️ 도망친다</div>
+            </div>
+
+            <div id="base-menu" style="display:none;">
+                <div class="command-link" onclick="TurnGame.getInstance().baseInput('1')">1. 🛌 긴 휴식 (하루 경과)</div>
+                <div class="command-link" onclick="TurnGame.getInstance().baseInput('2')">2. 🏪 거점 시설 이용</div>
+                <div class="command-link" onclick="TurnGame.getInstance().baseInput('3')">3. 🔨 거점 관리</div>
+                <div class="command-link" onclick="TurnGame.getInstance().baseInput('4')">4. 🚪 나가기 (모험으로)</div>
+            </div>
+
+            <div id="save-modal" style="display:none;">
+                <div class="modal-header">
+                    <h3 id="modal-title">게임 저장</h3>
+                    <button class="close-btn" onclick="SaveSlotUI.close()">X</button>
+                </div>
+                <div id="slot-list-container">
+                    </div>
+            </div>
+
+            <div id="log-modal" style="display:none;">
+                <div class="modal-header">
+                    <h3 style="margin:0;">📜 모험 기록</h3>
+                    <button class="close-btn" onclick="document.getElementById('log-modal').style.display='none'">X</button>
+                </div>
+                <div id="log-container">
+                    </div>
+            </div>
+
+        </div> <div id="bottom-nav">
+            <button class="nav-btn" id="btn-base">
+                <span class="nav-icon">🏠</span>
+                <span>거점</span>
+            </button>
+            <button class="nav-btn" id="btn-status">
+                <span class="nav-icon">📊</span>
+                <span>상태</span>
+            </button>
+            <button class="nav-btn" id="btn-inventory">
+                <span class="nav-icon">🛠️</span>
+                <span>가방</span>
+            </button>
+            <button class="nav-btn" id="saveGame">
+                <span class="nav-icon">💾</span>
+                <span>저장</span>
+            </button>
+            <button class="nav-btn" id="loadGame">
+                <span class="nav-icon">📂</span>
+                <span>로드</span>
+            </button>
+        </div>
+
+    </div> 
+    <link rel="stylesheet" href="css/style.css">
+</body>
+</html>
