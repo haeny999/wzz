@@ -67,9 +67,8 @@ export class InventoryManager {
                 this.tryDiscarding();
             }
         }
-    }
 
-    renderInventory() {
+            renderInventory() {
         const mapArea = document.getElementById('map-area');
         mapArea.innerHTML = ''; 
         
@@ -162,6 +161,10 @@ export class InventoryManager {
         
         mapArea.appendChild(grid);
     }
+
+    }
+
+    
 
         
         let displayItems = gameState.inventory.map((slot, index) => ({
