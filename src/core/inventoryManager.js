@@ -69,11 +69,9 @@ export class InventoryManager {
         }
     }
 
-    renderInventory() {
+        renderInventory() {
         const mapArea = document.getElementById('map-area');
         mapArea.innerHTML = ''; 
-        const grid = document.createElement('div');
-        grid.className = 'inventory-grid';
         
         let displayItems = gameState.inventory.map((slot, index) => ({
             ...slot,
@@ -83,68 +81,76 @@ export class InventoryManager {
         if (!gameState.inventoryColumns) gameState.inventoryColumns = 4;
         const cols = gameState.inventoryColumns;
 
-        // ✨ 2. 우측 상단에 '배열 변경 버튼' 만들기
+        // 1. 우측 상단에 '배열 변경 버튼' 만들기
         const topBar = document.createElement('div');
         topBar.style.cssText = "display: flex; justify-content: flex-end; padding: 5px 10px 0 0; width: 100%; box-sizing: border-box;";
         
         const toggleBtn = document.createElement('button');
         toggleBtn.innerHTML = `🔲 ${cols}열 보기`;
-        // 모바일에서도 누르기 좋고 게임 톤에 맞는 디자인
         toggleBtn.style.cssText = "background: #314735; border: 1px solid #4a705b; color: #eee; padding: 6px 12px; border-radius: 5px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.5);";
         
-        // 버튼 클릭 시 열 개수를 2개씩 늘리고, 8이 넘으면 다시 4로 되돌린 뒤 새로고침
+        // 버튼 클릭 시 열 개수를 2개씩 늘리고, 8이 넘으면 4로 되돌림
         toggleBtn.onclick = () => {
             gameState.inventoryColumns += 2;
             if (gameState.inventoryColumns > 8) gameState.inventoryColumns = 4;
-            this.renderInventory(); // 화면 즉시 다시 그리기!
+            this.renderInventory(); 
         };
         
         topBar.appendChild(toggleBtn);
-        mapArea.appendChild(topBar); // 버튼을 먼저 화면에 붙임
+        mapArea.appendChild(topBar); 
 
-        // 3. 가방 그리드 생성
+        // 2. 가방 그리드 생성 (중복 선언된 에러 해결!)
         const grid = document.createElement('div');
         grid.className = 'inventory-grid';
-        
-        // ✨ 4. 자바스크립트로 CSS의 열 개수(grid-template-columns)를 덮어쓰기!
         grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
-        // ✨ 5. 칸 수가 늘어나면 네모 칸이 작아지므로, 안의 폰트(아이콘, 숫자) 크기도 비례해서 줄여주기
+        // 3. 열 개수에 비례해서 아이콘과 숫자 크기 설정
         const iconSize = cols === 4 ? '50px' : (cols === 6 ? '30px' : '22px');
-        const countSize = cols === 4 ? '20px' : (cols === 6 ? '14px' : '11px');
+        const countSize = cols === 4 ? '24px' : (cols === 6 ? '16px' : '12px');
 
         // 전투 중에는 소모품만 보이기
         if (this.game.uiMode === 'BATTLE_ITEM' || this.game.uiMode === 'BATTLE_ITEM_CONFIRM') {
             displayItems = displayItems.filter(slot => ItemDB[slot.id] && ItemDB[slot.id].type === 'consumable');
         }
 
+        // 아이템이 없을 때의 처리 (버튼이 사라지지 않게 수정)
         if (displayItems.length === 0) {
-            mapArea.innerHTML = '<div style="color:#aaa; text-align:center; padding-top:50px;">아이템이 없습니다.</div>';
+            const emptyMsg = document.createElement('div');
+            emptyMsg.style.cssText = "color:#aaa; text-align:center; padding-top:50px; width:100%;";
+            emptyMsg.innerHTML = "아이템이 없습니다.";
+            mapArea.appendChild(emptyMsg);
             return;
         }
 
+        // 4. 아이템 렌더링
         displayItems.forEach((slot) => {
             const item = ItemDB[slot.id];
             if (!item) return;
 
             const div = document.createElement('div');
             div.className = 'item-slot';
+            // ✨ 상자의 기본 글씨(아이콘) 크기를 적용!
+            div.style.fontSize = iconSize;
             
+            // 아이콘과 카운트 공통 HTML (숫자 크기 적용)
+            const iconHtml = `<span>${item.icon || '📦'}</span>`;
+            const countHtml = `<span class="item-count" style="font-size: ${countSize};">${slot.count}</span>`;
+
             if (this.game.uiMode === 'CRAFTING') {
                 const countInSelection = this.game.selectedIndices.filter(i => i === slot.realIndex).length;
                 if (countInSelection > 0) {
                     div.style.border = '2px solid #3498db'; 
                     div.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
-                    div.innerHTML = `<span>${item.icon || '📦'}</span><span class="item-count">${slot.count}</span><span style="position:absolute; top:-5px; left:-5px; background:#3498db; color:white; font-size:12px; font-weight:bold; padding:2px 6px; border-radius:10px;">${countInSelection}</span>`;
+                    div.innerHTML = `${iconHtml}${countHtml}<span style="position:absolute; top:-5px; left:-5px; background:#3498db; color:white; font-size:12px; font-weight:bold; padding:2px 6px; border-radius:10px;">${countInSelection}</span>`;
                 } else {
-                    div.innerHTML = `<span>${item.icon || '📦'}</span><span class="item-count">${slot.count}</span>`;
+                    div.innerHTML = `${iconHtml}${countHtml}`;
                 }
             } else if (this.game.uiMode === 'BATTLE_ITEM_CONFIRM' && this.game.tempItemIndex === slot.realIndex) {
                 div.style.border = '2px solid #f1c40f'; 
                 div.style.backgroundColor = 'rgba(241, 196, 15, 0.2)';
-                div.innerHTML = `<span>${item.icon || '📦'}</span><span class="item-count">${slot.count}</span>`;
+                div.innerHTML = `${iconHtml}${countHtml}`;
             } else {
-                div.innerHTML = `<span>${item.icon || '📦'}</span><span class="item-count">${slot.count}</span>`;
+                div.innerHTML = `${iconHtml}${countHtml}`;
             }
             
             div.onclick = () => {
@@ -159,8 +165,10 @@ export class InventoryManager {
             };
             grid.appendChild(div);
         });
+        
         mapArea.appendChild(grid);
     }
+
 
     handleItemClick(index) {
         const slot = gameState.inventory[index];
