@@ -69,9 +69,100 @@ export class InventoryManager {
         }
     }
 
-        renderInventory() {
+    renderInventory() {
         const mapArea = document.getElementById('map-area');
         mapArea.innerHTML = ''; 
+        
+        let displayItems = gameState.inventory.map((slot, index) => ({
+            ...slot,
+            realIndex: index
+        }));
+
+        if (!gameState.inventoryColumns) gameState.inventoryColumns = 4;
+        const cols = gameState.inventoryColumns;
+
+        // ✨ 1. 공간을 차지하지 않는 '플로팅 버튼' 생성 (topBar 삭제)
+        const toggleBtn = document.createElement('button');
+        toggleBtn.innerHTML = `🔲 ${cols}열 보기`;
+        // position: absolute 와 bottom, right 좌표로 구석에 띄우기!
+        toggleBtn.style.cssText = "position: absolute; bottom: 15px; right: 15px; z-index: 100; background: #314735; border: 1px solid #4a705b; color: #eee; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.6);";
+        
+        toggleBtn.onclick = () => {
+            gameState.inventoryColumns += 2;
+            if (gameState.inventoryColumns > 8) gameState.inventoryColumns = 4;
+            this.renderInventory(); 
+        };
+        
+        mapArea.appendChild(toggleBtn); // 버튼을 mapArea 위에 둥둥 띄움
+
+        // 2. 가방 그리드 생성
+        const grid = document.createElement('div');
+        grid.className = 'inventory-grid';
+        grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+        // 3. 열 개수에 비례해서 아이콘과 숫자 크기 설정
+        const iconSize = cols === 4 ? '50px' : (cols === 6 ? '30px' : '22px');
+        const countSize = cols === 4 ? '24px' : (cols === 6 ? '16px' : '12px');
+
+        // 전투 중에는 소모품만 보이기
+        if (this.game.uiMode === 'BATTLE_ITEM' || this.game.uiMode === 'BATTLE_ITEM_CONFIRM') {
+            displayItems = displayItems.filter(slot => ItemDB[slot.id] && ItemDB[slot.id].type === 'consumable');
+        }
+
+        // 아이템이 없을 때의 처리
+        if (displayItems.length === 0) {
+            const emptyMsg = document.createElement('div');
+            emptyMsg.style.cssText = "color:#aaa; text-align:center; padding-top:50px; width:100%; height:100%;";
+            emptyMsg.innerHTML = "아이템이 없습니다.";
+            mapArea.appendChild(emptyMsg);
+            return;
+        }
+
+        // 4. 아이템 렌더링
+        displayItems.forEach((slot) => {
+            const item = ItemDB[slot.id];
+            if (!item) return;
+
+            const div = document.createElement('div');
+            div.className = 'item-slot';
+            div.style.fontSize = iconSize;
+            
+            const iconHtml = `<span>${item.icon || '📦'}</span>`;
+            const countHtml = `<span class="item-count" style="font-size: ${countSize};">${slot.count}</span>`;
+
+            if (this.game.uiMode === 'CRAFTING') {
+                const countInSelection = this.game.selectedIndices.filter(i => i === slot.realIndex).length;
+                if (countInSelection > 0) {
+                    div.style.border = '2px solid #3498db'; 
+                    div.style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+                    div.innerHTML = `${iconHtml}${countHtml}<span style="position:absolute; top:-5px; left:-5px; background:#3498db; color:white; font-size:12px; font-weight:bold; padding:2px 6px; border-radius:10px;">${countInSelection}</span>`;
+                } else {
+                    div.innerHTML = `${iconHtml}${countHtml}`;
+                }
+            } else if (this.game.uiMode === 'BATTLE_ITEM_CONFIRM' && this.game.tempItemIndex === slot.realIndex) {
+                div.style.border = '2px solid #f1c40f'; 
+                div.style.backgroundColor = 'rgba(241, 196, 15, 0.2)';
+                div.innerHTML = `${iconHtml}${countHtml}`;
+            } else {
+                div.innerHTML = `${iconHtml}${countHtml}`;
+            }
+            
+            div.onclick = () => {
+                if (this.game.uiMode === 'BATTLE_ITEM' || this.game.uiMode === 'BATTLE_ITEM_CONFIRM') {
+                    this.game.tempItemIndex = slot.realIndex; 
+                    this.game.uiMode = 'BATTLE_ITEM_CONFIRM';
+                    this.game.updateMenuUI();
+                    this.game.setMessage(`[${item.name}]을(를) 사용하시겠습니까?`);
+                } else {
+                    this.handleItemClick(slot.realIndex);
+                }
+            };
+            grid.appendChild(div);
+        });
+        
+        mapArea.appendChild(grid);
+    }
+
         
         let displayItems = gameState.inventory.map((slot, index) => ({
             ...slot,
